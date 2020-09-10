@@ -1,6 +1,7 @@
 ---
 layout: default
 title:  "GitHub Pages with Jekyll．用Markdown寫Blog"
+date:   2020-09-10 20:00:01
 categories: main
 ---
 
@@ -39,5 +40,7 @@ GitHub Pages僅支援使用靜態的內容，因此不能把GitHub Pages當成se
 另外，GitHub Pages並非設計用來讓使用者作商業用途使用，這點需要遵守。
 
 ### 什麼是Jekyll呢？
+
+<img src="../assets/images/2020-09-10-github-pages_with_Jekyll/image-20200910221944602.png" alt="image-20200910221944602" style="zoom:50%;" />
 
 Jekyll是一個靜態網站產生器(static website generator)，而且GitHub Pages有內建支援。先簡單談談
