@@ -41,6 +41,6 @@ GitHub Pages僅支援使用靜態的內容，因此不能把GitHub Pages當成se
 
 ### 什麼是Jekyll呢？
 
-![image-20200927223418230](assets/images/2020-09-10-github-pages_with_Jekyll/image-20200927223418230.png)
+![image-20200927225344727]({{ site.baseurl }}/assets/images/2020-09-10-github-pages_with_Jekyll/image-20200927225344727.png)
 
 Jekyll是一個靜態網站產生器(static website generator)，而且GitHub Pages有內建支援。先簡單談談
