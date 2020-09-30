@@ -27,7 +27,7 @@ GitHub Pages類型主要分為Project或個人/組織，前者針對特定的pro
 
 若是以個人/組織而言，網站會擺在repository的預設branch的根目錄下。而以project而言，則是需要開設一個`gh-pages` branch，將網站置於其根目錄下。使用者也可以調整設定，將目錄改放在任何branch的`/docs`之下。
 
-若是在任一個repository之下要建立GitHub Pages，除了上述提到需建立`gh-pages` branch外，最後的瀏覽網址會是：`https://<used>.github.io/<repository>`
+若是在任一個repository之下要建立GitHub Pages，除了上述提到需建立`gh-pages` branch外，最後的瀏覽網址會是：`https://<username>.github.io/<repository>`
 
 ### 使用靜態網站生成器
 
