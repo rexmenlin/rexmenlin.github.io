@@ -250,6 +250,7 @@ module.exports = {
   projectName: 'endiliey.github.io',
   organizationName: 'endiliey',
   trailingSlash: false,
+  deploymentBranch: 'gh-pages',
   // ...
 };
 ```
@@ -267,3 +268,13 @@ cmd /C "set "GIT_USER=<GITHUB_USERNAME>" && yarn deploy"
 透過上述指令，會進行建置，預設會將原本Docusaurus的原始檔，發佈到`main` branch底下，而產生的靜態頁面的原始檔，則會發佈到`gh-pages` branch底下。
 
 ![Untitled](./Untitled%204.png)
+
+### 調整Github上的Repo Settings
+
+要選擇發佈的Branch，從`master`改到`gh-pages`。如果忘了改，使用`master`的話，是無法看到build後的網頁內容的。
+
+![Untitled](./repo.png)
+
+調整後，記得按下`save`，需等一點點時間才會起作用。
+
+如果你可以看到自己的blog出現在自己的GitHub Pages，就大功告成囉！
