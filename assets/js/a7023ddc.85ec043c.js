@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkcodetenshu=self.webpackChunkcodetenshu||[]).push([[713],{3457:e=>{e.exports=JSON.parse('[{"label":"SSG","permalink":"/blog/tags/ssg","count":2},{"label":"Docker","permalink":"/blog/tags/docker","count":1},{"label":"Git","permalink":"/blog/tags/git","count":1}]')}}]);
