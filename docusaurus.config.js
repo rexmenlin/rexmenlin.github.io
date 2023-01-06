@@ -70,7 +70,8 @@ const config = {
           //   position: 'left',
           //   label: 'Tutorial',
           // },
-          { to: "/blog", label: "Blog", position: "left" },
+          { to: "/blog", label: "Blog文章", position: "left" },
+          { to: "/blog/tags", label: "分類Tags", position: "left" },
           // {
           //   href: 'https://rexmenlin.github.io',
           //   label: '雷哥Github (空空一物)',
@@ -91,7 +92,7 @@ const config = {
             ],
           },
           {
-            title: "雷哥的玩物",
+            title: "My Hobbies",
             items: [
               {
                 label: "雨田良可 | 攝影集",
@@ -103,8 +104,17 @@ const config = {
               // },
             ],
           },
+          {
+            title: "About Me",
+            items: [
+              {
+                label: "誰是雷哥",
+                to: "aboutme",
+              },
+            ],
+          },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Code Tenshu 程式技術天守閣. 使用 Docusaurus 建置.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Code Tenshu 程式技術天守閣.`,
       },
       prism: {
         theme: lightCodeTheme,
