@@ -64,12 +64,12 @@ const config = {
           src: 'img/codetenshu_logo_blackwhite.png',
         },
         items: [
-          // {
-          //   type: 'doc',
-          //   docId: 'intro',
-          //   position: 'left',
-          //   label: 'Tutorial',
-          // },
+          {
+            type: 'doc',
+            docId: 'intro',
+            position: 'left',
+            label: '系列文章',
+          },
           {to: '/blog', label: 'Blog', position: 'left'},
           // {
           //   href: 'https://rexmenlin.github.io',
