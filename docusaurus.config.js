@@ -64,13 +64,6 @@ const config = {
           src: "img/codetenshu_logo_blackwhite.png",
         },
         items: [
-          {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: '系列文章',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
           // {
           //   type: 'doc',
           //   docId: 'intro',
@@ -79,6 +72,12 @@ const config = {
           // },
           { to: "/blog", label: "Blog文章", position: "left" },
           { to: "/blog/tags", label: "分類Tags", position: "left" },
+          {
+            type: 'doc',
+            docId: 'intro',
+            position: 'left',
+            label: '系列文章',
+          },          
           // {
           //   href: 'https://rexmenlin.github.io',
           //   label: '雷哥Github (空空一物)',
@@ -90,11 +89,15 @@ const config = {
         style: "dark",
         links: [
           {
-            title: "部落格文章",
+            title: "Code Tenshu",
             items: [
               {
-                label: "Blog",
+                label: "Blog文章",
                 to: "/blog",
+              },
+              {
+                label: "系列文章",
+                to: "/docs/intro",
               },
             ],
           },
