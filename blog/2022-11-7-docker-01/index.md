@@ -6,7 +6,7 @@ tags: [Docker]
 ---
 # Docker Desktop安裝筆記 (Windows版本)
 
-使用Docker時，無論你使用Windows或macOS，多少都會聽說過要安裝具備UI功能的Docker Desktop。雖然前先日子Docker開始提出了Docker Desktop的收費方案，但是對於個人使用而言是仍不受影響的。對於想要使用Pro功能的個人、團隊開發或大型企業而言，若有需要，則需使用付費方案來繼續獲取Docker Desktop的使用授權。
+使用Docker時，無論你使用Windows或macOS，多少都會聽說過要安裝具備UI功能的Docker Desktop。雖然前先日子Docker開始提出了Docker Desktop的收費方案，但是對於個人使用而言是仍不受影響的。對於想要使用Pro功能的個人、團隊開發或大型企業而言 (超過250位員工，或收年入在USD$10M的企業)，若有需要，則需使用付費方案來繼續獲取Docker Desktop的使用授權。
 
 ![image-20221107222248858](./00.png)
 
