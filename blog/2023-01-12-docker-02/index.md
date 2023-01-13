@@ -178,6 +178,10 @@ docker pull docker/getting-started
 
 ![](assets/2023-01-13-11-15-15-image.png)
 
+寫行簡單的字，等一下從container連入時可確認一下作驗證。
+
+![](assets/2023-01-13-16-08-35-image.png)
+
 這時候我再回到Docker Desktop的Volumes詳細資訊的`Data`區，就會看到裡面有這個檔案了。
 
 ![](assets/2023-01-13-11-16-06-image.png)
@@ -195,6 +199,8 @@ cat test.txt
 ```
 
 ![](assets/2023-01-13-11-28-32-image.png)
+
+cat輸出後，可以看到剛剛新增的那個test.txt文字檔內容了。
 
 
 

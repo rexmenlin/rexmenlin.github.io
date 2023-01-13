@@ -1,0 +1,122 @@
+---
+slug: 2023-01-13-docker-03
+title: "Docker基礎觀念與指令介紹"
+authors: [rexmenlin]
+tags: [Docker]
+---
+
+我們在上一篇文意[《Docker Desktop新手教學》](/blog/2023-01-12-docker-02)中了解了如何透過Docker Desktop GUI快速操作與檢視容器，但也了解到其實視窗化的Desktop工具功能不是很齊全，許多功能是沒辦法在上面一次完成的。這篇開始要來談docker的指令集，可以從terminal中直接下完整的指令來進行各種容器的日常作業。
+
+當然，使用terminal進行指令式的作業流程，一樣可以開著Docker Desktop進行快速又直接美觀的即時檢視或管理，也是一個不錯的搭配運用。
+
+## 從查詢docker版本開始熱身
+
+當安裝完docker engine後，可以在本機的terminal工具先進行一下確認，通常可以嘗試列出docker的版本。
+
+```docker
+# 簡要版查詢version
+docker -v
+docker --version
+
+
+# 完整版查詢version資訊
+docker version
+```
+
+我的目前使用的是version 20.10.21
+
+也可以順便查一下docker-compose的版本
+
+```git
+docker-compose -v
+docker-compose version
+```
+
+
+
+## Image映像檔
+
+接著就可以從Image開始了解起。
+
+### 看看Images資訊
+
+先前介紹過image與container之間的關係，要執行容器化container之前，我們一定要先有image。先查看目前本機有哪些images吧
+
+```docker
+docker image ls
+
+# image加複數s
+docker images
+```
+
+![](assets/2023-01-13-18-42-59-image.png)
+
+查詢出來會列出幾個欄位：
+
+| 欄位         | 說明                                                                         |
+| ---------- | -------------------------------------------------------------------------- |
+| Repository | 列出在雲端Docker Hub上的Repo名稱以及Image名稱，使用`/`分隔。                                  |
+| Tag        | 主要記錄版本，若最新版則為latest。                                                       |
+| Image ID   | 若要對我們目前的image作操作時，ID可代表唯一性。不過Docker在操作時，不用輸入完整的ID，只需要輸入前幾碼即可，前提是只要能識別出唯一性。 |
+| Size       | 這個Image所佔的檔案大小                                                             |
+
+### Pull! 抓取新的Image試試
+
+試著抓取hello-world Image來試試看
+
+```docker
+docker image pull hello-world
+```
+
+![](assets/2023-01-13-18-50-56-image.png)
+
+若是該image不存在，則會從雲端的Repo進行下載。再重新進行images查詢，可以看到已列在列表中。
+
+![](assets/2023-01-13-18-51-47-image.png)
+
+但剛的狀態僅僅是抓取下來，並未運行成container，所以下一步就是要來試著執行容器化的動化。
+
+
+
+更完整的pull語法如下，如果有需要針對特定的版本號碼，要在image後加上冒號以及版號，預設都不加的話就是latest版本。
+
+```docker
+docker pull <repo_account>/<image_name>:<tag>
+```
+
+#### 如何刪除Image?
+
+如果要刪除image，可使用以下語法：
+
+```docker
+docker image rm <image_name 或 image_id>
+docker rmi <image_name 或 image_id>
+```
+
+不過預設情況，只要有container是使用該image的話，就不能直接對此image作刪除 (無論container是不是在運行中的狀態)。
+
+若是想要暴力刪除此image的話，就要加上`-f`的參數。
+
+```docker
+docker image rm -f <image_name 或 image_id>
+docker rmi -f <image_name 或 image_id>
+```
+
+#### 小技巧
+
+使用docker有ID類的(無論Image或Container)，不需要輸入完整的ID。只要你輸入的頭幾碼足以識別出唯一性即可，所以為了增加管理效率，可以只輸入3~4碼即可。
+
+
+
+### Run! 運行成container狀態吧
+
+通常如果你要將一個Image直接運行成container，可以使用`run`指令，就會也包含了剛剛的`pull`動作。不過在此需注意的是，run是container的指令，並非image的。但執行run的時候，container是可以省略的。
+
+```docker
+docker container run hello-world
+docker run hello-world
+```
+
+![](assets/2023-01-13-18-57-49-image.png)
+
+這個hello-world只是作為docker運行成container的基礎測試，他沒有什麼特別的功能，只要能看到上述的內容就代表運行成功了。上面的內容除了解說運行的流程外，還外加提示，你可以嘗試使用互動式指令來運行一個ubuntu的container。
