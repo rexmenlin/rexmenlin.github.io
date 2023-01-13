@@ -32,8 +32,6 @@ docker-compose -v
 docker-compose version
 ```
 
-
-
 ## Image映像檔
 
 接著就可以從Image開始了解起。
@@ -76,8 +74,6 @@ docker image pull hello-world
 
 但剛的狀態僅僅是抓取下來，並未運行成container，所以下一步就是要來試著執行容器化的動化。
 
-
-
 更完整的pull語法如下，如果有需要針對特定的版本號碼，要在image後加上冒號以及版號，預設都不加的話就是latest版本。
 
 ```docker
@@ -93,9 +89,9 @@ docker image rm <image_name 或 image_id>
 docker rmi <image_name 或 image_id>
 ```
 
-不過預設情況，只要有container是使用該image的話，就不能直接對此image作刪除 (無論container是不是在運行中的狀態)。
+不過預設情況，只要有container還關聯著此image的話，就不能直接對此image作刪除。
 
-若是想要暴力刪除此image的話，就要加上`-f`的參數。
+若是想要暴力刪除此image的話，就要加上`-f`的參數。不過此作法是在於有container沒有運作中，但關聯著image的情況。如果該container正在運作中的話，則必須先停止運作才行。(後面會解說)
 
 ```docker
 docker image rm -f <image_name 或 image_id>
@@ -105,8 +101,6 @@ docker rmi -f <image_name 或 image_id>
 #### 小技巧
 
 使用docker有ID類的(無論Image或Container)，不需要輸入完整的ID。只要你輸入的頭幾碼足以識別出唯一性即可，所以為了增加管理效率，可以只輸入3~4碼即可。
-
-
 
 ### Run! 運行成container狀態吧
 
@@ -120,3 +114,73 @@ docker run hello-world
 ![](assets/2023-01-13-18-57-49-image.png)
 
 這個hello-world只是作為docker運行成container的基礎測試，他沒有什麼特別的功能，只要能看到上述的內容就代表運行成功了。上面的內容除了解說運行的流程外，還外加提示，你可以嘗試使用互動式指令來運行一個ubuntu的container。
+
+### 跑一個有感覺一點的container吧
+
+剛上面的hello-world在一執行完後就會立刻結束，即使container還存在，但無法對他進行進一步的互動操作或使用。所以我們可以來運行一個簡單的web server，讓這個container可以持續運行，並且可以使用本機瀏覽器來拜訪首頁。
+
+
+
+我們嘗試使用以下指令來執行，port的對應8888可自行修改成你要的。
+
+```docker
+docker run -d -p 8888:80 docker/getting-started
+```
+
+![](C:\Users\rexme\AppData\Roaming\marktext\images\2023-01-13-23-11-26-image.png)
+
+接著使用瀏覽開啟 http://localhost:8888/ ，這個測試網站就是從剛剛的container提供的web伺服器服務。
+
+![](C:\Users\rexme\AppData\Roaming\marktext\images\2023-01-13-23-12-38-image.png)
+
+#### 連入操作container
+
+我們剛剛運行的是以-d的daemon模式運作，所以他會常駐執行起來，但我們如果想要連入操作要怎麼做呢？
+
+可以使用`exec`加上`-it`的參數，再指定要使用的shell程式`/bin/sh`後，就能針對該container作操作。
+
+```docker
+docker exec -it 70e3 /bin/sh
+```
+
+![](C:\Users\rexme\AppData\Roaming\marktext\images\2023-01-13-23-20-50-image.png)
+
+#### 刪掉剛剛的container
+
+有建立就要有刪除，我們試著用以下指令刪掉container。
+
+```docker
+docker container rm 70e3
+# 或省略container，預設就是對container操作
+docker rm 70e3
+```
+
+但在進行操作時，會被告知這個container還在運行，要先停止他。
+
+可再使用stop指令停止這個container後再進行刪除。
+
+```docker
+docker stop 70e3
+```
+
+![](C:\Users\rexme\AppData\Roaming\marktext\images\2023-01-13-23-25-09-image.png)
+
+不過如果你想無視他是否執行，都要刪掉這個container，如同刪除image一樣，加上`-f`後就能暴力刪除container了。
+
+```docker
+docker rm -f 70e3
+```
+
+#### 想要一開始run起來時就順便連入操作
+
+另外補充一下，若是想要在一開始run起來的時候就連入container作操作，可以在run的指令就加上-it與/bin/sh的參數。我們以超輕量的linux image -- alpine作為示範。
+
+```docker
+docker run -it -d alpine /bin/sh
+```
+
+> 早期版本alpine只能使用/bin/ash，現在可以使用/bin/sh了。但在這裡不能再加上-d的參數。如果使用-d，執行時container就會跑到背景去了，則要使用exec -it才能連入操作。
+
+
+
+上述簡要的說明如何使用docker engine的指令模式來操作image、container，如果有安裝docker desktop的話，還可以輔助的一起使用，也是蠻方便的。
