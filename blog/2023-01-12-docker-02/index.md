@@ -1,6 +1,6 @@
 ---
 slug: 2023-01-12-docker-02
-title: "Docker Desktop新手村: Image篇"
+title: "Docker Desktop新手教學"
 authors: [rexmenlin]
 tags: [Docker]
 ---
@@ -107,3 +107,95 @@ docker pull docker/getting-started
 ![](assets/2023-01-12-21-10-48-image.png)
 
 上述的這些新功能，真的是蠻有感而且實用的，至少讓 Docker Desktop 的實用性與不可取代性增加了不少，先前很多人會認為只要會 Docker 的 Terminal 指令，Docker Desktop 真的只是非必要性的輔助工具，所以在先前從免費軟體變成需付費的消息一出，很多人評估後直接棄之不用。
+
+
+
+### 執行Image
+
+若我們要將image運行起來成為container，一種是在Image不存在本機時，直接用run指令，一併先pull下載再順便run成container。另一種方式是原本已存在本機的image，可在之後對它下run指令再運行新的container。
+
+
+
+不過不得不抱怨一下，Docker Desktop的run功能真的作半套，功能相當陽春，基本上不太能因應需求。**<mark>在Docker Desktop，不能夠透過設定來設定額外的執行參數！</mark>**
+
+所以，如果執行時，想要帶入什麼port mapping、背景daemon執行或互動模式等，是不能達成的！只能透過Terminal的方式輸入，這真的讓我覺得相當納悶，要做到這樣的功能對Docker Desktop的開發團隊來說絕非難事，但就是沒有。也許未來幾版會有這樣的功能也不一定。
+
+
+
+以下以alpine:latest進行Image的設定。(可使用`Ctrl+K`搜尋)
+
+![](assets/2023-01-13-10-51-33-image.png)
+
+點選image的play鍵即可執行Run指令，基本預設是不帶其他設定，Docker Engine會自動以預設方式亂數幫你產生container name。
+
+
+
+若我們展開`Optional settings`後，會到可對Container name、Ports mapping、Volumes、Environment variables進行設定。![](assets/2023-01-13-10-54-22-image.png)
+
+#### 設定Volumes
+
+在設定volumes時，要選擇本機Host的路徑 (Host path)以及container上的掛載路徑 (Container path)。
+
+
+
+在本機路徑中，可以點選`…`在本機端選擇你想要掛volume的路徑，不過這個方式設定完的volume不會出現在Docker Desktop Volumes區！無法從那邊再進行管理。
+
+若想要在Volumes區可被看到，則記得不要填路徑，而是輸入一個「名稱」作為volume name，這樣才會在volumes區出現。但你可能會好奇，這樣建出來的本機路徑在哪裡？
+
+![](assets/2023-01-13-10-59-22-image.png)
+
+點選進去詳細資訊後，可看到被使用在哪一個container以及container上的位置。
+
+![](assets/2023-01-13-11-01-35-image.png)
+
+也可以從container的詳細資訊中，在Inspect區看到volume的綁定。
+
+![](assets/2023-01-13-11-06-13-image.png)
+
+#### 那本機的Volumes目錄到底在哪裡？
+
+若你使用Windows (我只有Windows，Mac的使用者要自己研究一下了，或哪天我使用Mac再來更新)，可開啟檔案總管或者使用`Win+R`執行，輸入以下指令：
+
+```powershell
+\\wsl$
+```
+
+![](assets/2023-01-13-11-08-58-image.png)
+
+另一個方式，因為在Windows中有安裝WLS的關係，在檔案總管其實可以看到Linux的磁碟icon，可以連結到一樣的地方。
+
+![](assets/2023-01-13-11-10-06-image.png)
+
+其中，再進到docker-desktop-data。再進到data、docker、volumes就能看到剛建立的volume了。
+
+更直接的路徑在此：
+
+```
+\\wsl$\docker-desktop-data\data\docker\volumes\
+```
+
+以我剛剛的myvol1為例，進到裡面後可以建立一個檔案。
+
+![](assets/2023-01-13-11-15-15-image.png)
+
+這時候我再回到Docker Desktop的Volumes詳細資訊的`Data`區，就會看到裡面有這個檔案了。
+
+![](assets/2023-01-13-11-16-06-image.png)
+
+為了要直接在Container中驗證，我們得讓Image在Run的時候是以背景執行方式運行Container，我們可以重新再使用一下先前用到的`docker/getting-started`這個Image，因為這個image有進行背景運行的設定，以方便我們使用terminal連入確認Volume的狀態。
+
+
+
+我們進到Terminal區後，透過以下指令確認我們掛上去在本機端的Volume檔案及內容，都可以在container中存取到。
+
+```bash
+cd /var/lib/docker/volumes/myvol1/_data/
+ls
+cat test.txt
+```
+
+![](assets/2023-01-13-11-28-32-image.png)
+
+
+
+這樣大家是否會使用簡單的Docker Desktop的功能了呢？我個人覺得他的功能有一點不是那麼豐富，雖然介面設定的很簡潔，但更期待的是他能夠將更多terminal指令的功能UI化，這樣才能真正更有效率或直觀的管理容器。
