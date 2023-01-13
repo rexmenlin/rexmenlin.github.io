@@ -119,19 +119,17 @@ docker run hello-world
 
 剛上面的hello-world在一執行完後就會立刻結束，即使container還存在，但無法對他進行進一步的互動操作或使用。所以我們可以來運行一個簡單的web server，讓這個container可以持續運行，並且可以使用本機瀏覽器來拜訪首頁。
 
-
-
 我們嘗試使用以下指令來執行，port的對應8888可自行修改成你要的。
 
 ```docker
 docker run -d -p 8888:80 docker/getting-started
 ```
 
-![](C:\Users\rexme\AppData\Roaming\marktext\images\2023-01-13-23-11-26-image.png)
+![](assets/2023-01-13-23-11-26-image.png)
 
 接著使用瀏覽開啟 http://localhost:8888/ ，這個測試網站就是從剛剛的container提供的web伺服器服務。
 
-![](C:\Users\rexme\AppData\Roaming\marktext\images\2023-01-13-23-12-38-image.png)
+![](assets/2023-01-13-23-12-38-image.png)
 
 #### 連入操作container
 
@@ -143,7 +141,7 @@ docker run -d -p 8888:80 docker/getting-started
 docker exec -it 70e3 /bin/sh
 ```
 
-![](C:\Users\rexme\AppData\Roaming\marktext\images\2023-01-13-23-20-50-image.png)
+![](assets/2023-01-13-23-20-50-image.png)
 
 #### 刪掉剛剛的container
 
@@ -163,7 +161,7 @@ docker rm 70e3
 docker stop 70e3
 ```
 
-![](C:\Users\rexme\AppData\Roaming\marktext\images\2023-01-13-23-25-09-image.png)
+![](assets/2023-01-13-23-25-09-image.png)
 
 不過如果你想無視他是否執行，都要刪掉這個container，如同刪除image一樣，加上`-f`後就能暴力刪除container了。
 
@@ -180,7 +178,5 @@ docker run -it -d alpine /bin/sh
 ```
 
 > 早期版本alpine只能使用/bin/ash，現在可以使用/bin/sh了。但在這裡不能再加上-d的參數。如果使用-d，執行時container就會跑到背景去了，則要使用exec -it才能連入操作。
-
-
 
 上述簡要的說明如何使用docker engine的指令模式來操作image、container，如果有安裝docker desktop的話，還可以輔助的一起使用，也是蠻方便的。
