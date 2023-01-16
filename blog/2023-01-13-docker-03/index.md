@@ -115,6 +115,27 @@ docker run hello-world
 
 這個hello-world只是作為docker運行成container的基礎測試，他沒有什麼特別的功能，只要能看到上述的內容就代表運行成功了。上面的內容除了解說運行的流程外，還外加提示，你可以嘗試使用互動式指令來運行一個ubuntu的container。
 
+### 查詢container列表
+
+查詢目前所有的container列表，有下列幾種方式。
+
+```docker
+# 查詢執行中的container
+docker container ls
+docker ps
+
+# 查詢所有的container
+docker container ls -a
+docker ps -a
+```
+
+若我們想要直接列出所有的container的ID，可以加上`-q`參數，後面會講解這個能做什麼用。
+
+```docker
+docker container ls -aq
+docker ps -aq
+```
+
 ### 跑一個有感覺一點的container吧
 
 剛上面的hello-world在一執行完後就會立刻結束，即使container還存在，但無法對他進行進一步的互動操作或使用。所以我們可以來運行一個簡單的web server，讓這個container可以持續運行，並且可以使用本機瀏覽器來拜訪首頁。
@@ -171,6 +192,25 @@ docker stop 70e3
 docker rm -f 70e3
 ```
 
+#### 一次對全部container操作
+
+若我們想要一次停止或刪除多個container，可以在後面的ID處以空格格開多個。
+
+```docker
+docker stop 70e3 af32 b12f
+# 或
+docker rm 70e3 af32 b12f
+```
+
+但如果我們想要一次把所有的container全部都停止，則可以使用上面講到的-q參數，只列出Container ID後，再把他們當成變數餵給stop或rm等後面的參數。請注意，這個作法在Windows cmd是無法使用的，需使用powershell。
+
+```docker
+docker container stop $(docker ps -aq)
+docker container rm $(docker container ls -aq)
+# 當然前面的container也可省略
+docker rm $(docker ps -aq)
+```
+
 #### 想要一開始run起來時就順便連入操作
 
 另外補充一下，若是想要在一開始run起來的時候就連入container作操作，可以在run的指令就加上-it與/bin/sh的參數。我們以超輕量的linux image -- alpine作為示範。
@@ -181,10 +221,6 @@ docker run -it alpine /bin/sh
 
 > 早期版本alpine只能使用/bin/ash，現在可以使用/bin/sh了。
 
-
-
 這裡的`-it`參數，實際上代表著`interactive`以及`tty`。由於alpine本身沒有預設執行任何可常駐在背景服務的程式，所以若下了`-d`服務，想說之後再使用`exec -it`方式連入是會沒效用的。(無效果的是`-d`參數)
-
-
 
 上述簡要的說明如何使用docker engine的指令模式來操作image、container，如果有安裝docker desktop的話，還可以輔助的一起使用，也是蠻方便的。
