@@ -131,6 +131,8 @@ docker run -d -p 8888:80 docker/getting-started
 
 ![](assets/2023-01-13-23-12-38-image.png)
 
+上述加上了`-d`的參數，這裡實際上代表的原意是`detach`模式，表示可將container以背景服務方式運作。但一般多半會將這個d解釋為Linux的daemon。或許是一種誤用，但其實理解上還蠻相近的。
+
 #### 連入操作container
 
 我們剛剛運行的是以-d的daemon模式運作，所以他會常駐執行起來，但我們如果想要連入操作要怎麼做呢？
@@ -174,9 +176,15 @@ docker rm -f 70e3
 另外補充一下，若是想要在一開始run起來的時候就連入container作操作，可以在run的指令就加上-it與/bin/sh的參數。我們以超輕量的linux image -- alpine作為示範。
 
 ```docker
-docker run -it -d alpine /bin/sh
+docker run -it alpine /bin/sh
 ```
 
-> 早期版本alpine只能使用/bin/ash，現在可以使用/bin/sh了。但在這裡不能再加上-d的參數。如果使用-d，執行時container就會跑到背景去了，則要使用exec -it才能連入操作。
+> 早期版本alpine只能使用/bin/ash，現在可以使用/bin/sh了。
+
+
+
+這裡的`-it`參數，實際上代表著`interactive`以及`tty`。由於alpine本身沒有預設執行任何可常駐在背景服務的程式，所以若下了`-d`服務，想說之後再使用`exec -it`方式連入是會沒效用的。(無效果的是`-d`參數)
+
+
 
 上述簡要的說明如何使用docker engine的指令模式來操作image、container，如果有安裝docker desktop的話，還可以輔助的一起使用，也是蠻方便的。
