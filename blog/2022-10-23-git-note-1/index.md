@@ -33,8 +33,6 @@ git init
 git status
 ```
 
-
-
 # 文件的異動版控管理
 
 ## 文件提交 (Commit)
@@ -80,11 +78,7 @@ git status
 
 簡單說一下，在Git控管的目錄，一開始所有檔案都是在untracked (未追蹤)的狀態，而這個區域意即工作目錄(working directory)。而當開始有檔案的異動時，Git會偵測的到並會進入modified狀態。當「有被異動，且想要進行版控的文件」，才需要「追蹤」與管理它們。因此接下來就是要將這些檔案，移至下一個追蹤的狀態，我們稱之為「staged」。而在stage中的狀態 (即放置於Staging Area)，還不會直接受到Git的版控，需要將他們明確的「提交」(commit)後，才會成為一個正式的版控紀錄點，意即放入Git Repository區。
 
-
-
 [Working Directory] **Untracked狀態** --> [Staging Area] **Staged狀態** --> [Git Repository] **Tracked狀態**
-
-
 
 ### 來點add檔案指令，放入Staging Area
 
@@ -132,7 +126,7 @@ git commit -m <提交內容>
 
 注意，若不加-m，則會開啟預設的Vim Editor (或在Install時可選擇慣用的Editor)進行「提交訊息撰寫」。若加上-m，則可直接在指令中輸入提交的訊息。
 
-> -m後，可加上雙引號、單引號、直接輸入字串(但不能空格，要空格必須使用引號)，甚至直接緊接著-m的m撰寫都可以。不過某些環境下使用單引號會有問題，因此建議使用雙引號
+> -m後，可加上雙引號、單引號、直接輸入字串(但不能空格，要空格必須使用引號)，甚至直接緊接著-m的m撰寫都可以。不過某些環境下使用單引號會有問題，例如windows cmd命令列，因此建議使用**雙引號**。
 
 ### 補充技巧: 修改最後一次commit說明內容
 
@@ -145,8 +139,6 @@ git commit --amend -m <新的內容>
 ![Untitled](./Untitled%203.png)
 
 不過要注意的是，重新對最後一次提交作說明的修改，是會被複製出來產生一個新的commit index，所以並非能船過水無痕。而原本的commit則會被流放，等待Git的GC機制啟動時，就有可能被回收。
-
-
 
 ## 聊聊遠端Git Repo
 
@@ -222,8 +214,6 @@ origin https://github.com/rexmenlin/test.git (push)
     main pushes to main (up to date)
 ```
 
-
-
 ### 將結果推送到遠端Repo中
 
 當執行完commit後，即可再度執行push指令。
@@ -233,8 +223,6 @@ git push
 ```
 
 因為剛剛已經使用git push -u origin main進行過第一次的推送，因此git會記住這個狀態。之後再使用push指令時，後面的參數就不需要再設定。
-
-
 
 ## 有關remote add與clone的差別
 
@@ -264,8 +252,6 @@ git clone https://github.com/rexmenlin/test.git
 
 當clone指令把遠端Repo在本機端完整建立後，後續的更新，要從遠端取得檔案回來本地，就不會再使用clone指令了。就會使用pull (連同merge一起作) 或fetch (只下載但不主動作merge)。
 
-
-
 ### 將遠端的內容更新回來本地端
 
 上述提到了將本地端推送上去遠端的push指令，也有從遠端把資料第一次複製回來的clone指令 (通常clone只會在最初始時用一次而已)，接下來就是淺淺介紹兩個指令 pull與fetch，可在後續將遠端的新狀態更新回來本地端。
@@ -279,8 +265,6 @@ git pull
 ```
 
 因此pull指令等同於fetch + merge，雖然這裡還沒提到merge是什麼，但可以先理解就是兩個以上的人若有修改同一份檔案，勢必要進行合併。合併內容若沒有改到相同的行數，則可順利把兩份檔案有差異的地方融合成一份，但如果不幸的改動到的是相同內容的話，就會造成merge衝突(conflict)，則需要針對文件內容作取捨與調整後，才能完成這個合併的動作。
-
-
 
 # Branch分支管理
 
@@ -387,8 +371,6 @@ git branch -f <branch name> <commit index>
 git branch -f master 06fe
 ```
 
-
-
 ### 來merge內容吧
 
 我們當初開設newfunc1的目的，就是為了在其他分支中撰寫一些新的東西而暫不影響主線內容。當我們已經確認完新內容時，就可以使用merge的功能把新內容整合回主線中。
@@ -412,8 +394,6 @@ git branch -d newfunc1
 ```
 
 ![Untitled](./Untitled%2011.png)
-
-
 
 ## 還沒談到的部份
 
