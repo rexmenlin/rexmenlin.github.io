@@ -1,12 +1,11 @@
 ---
-
 sidebar_position: 13
 ---
 
 昨天遇到的找不到情境被觸發ReturnURL，由於測試環境Message中解開的兩個網址：`WebAtmURL`以及`OtpUrl`連過去一個會出現錯誤訊息，一個連結不到。
 
 經由寫信詢問永豐技術處的窗口後，及時得到一個完整的回覆也釐清心中的疑惑 (不然就要斷更了!!)，給永豐數金處數位支付部門一個**讚**！
-![/images/emoticon/emoticon12.gif](/images/emoticon/emoticon12.gif)
+![/images/emoticon/emoticon12.gif](https://ithelp.ithome.com.tw/images/emoticon/emoticon12.gif)
 
 我直接整理我的問題以及回覆後的摘要結果如下：
 
@@ -14,7 +13,7 @@ sidebar_position: 13
   * 因此，昨天出現網頁無法使用，是**預期內正常**的。
 * `ReturnURL`會被觸發的時機僅：
   1. **信用卡**即時交易成功/失敗通知 
-  2. 虛擬帳號方式，透過`WebAtmURL`或`OtpUrl`轉帳 (但如同前面所述，測試環境未開放，因此無法這樣測)
+  2. 虛擬帳號方式，透過`WebAtmURL`或`OtpUrl`轉帳 (但如同前面所述，測試環境未開
 * 因此，在虛擬帳號的方試下，只能使用`BackendURL`來取得`PayToken`值！ (雖然BackendURL是虛擬帳號的非必填值)
 
 所以意思就是，若沒有架一個網站讓永豐API呼叫`BackendURL`的方式，我們使用虛擬帳號模擬付款是拿不到`PayToken`的。因此我們得提前進行Django的Python Web開發了。

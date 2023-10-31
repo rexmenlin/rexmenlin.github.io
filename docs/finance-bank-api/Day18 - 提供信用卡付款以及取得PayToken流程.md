@@ -175,4 +175,4 @@ def card_return(request):
 
 這樣總算是將豐收款的兩大功能：`ATM虛擬帳戶付款`與`信用卡付款服務`完成了！
 
-![/images/emoticon/emoticon07.gif](/images/emoticon/emoticon07.gif)
+![/images/emoticon/emoticon07.gif](https://ithelp.ithome.com.tw/images/emoticon/emoticon07.gif)

@@ -390,4 +390,4 @@ PayToken所查詢到的回傳結果解密response如下：
 
 沒錯，大師兄回來了！好感人！
 太棒了！這一刻等了好久呀，拍張照片記錄一下！
-![/images/emoticon/emoticon74.gif](/images/emoticon/emoticon74.gif)
+![/images/emoticon/emoticon74.gif](https://ithelp.ithome.com.tw/images/emoticon/emoticon74.gif)

@@ -159,4 +159,4 @@ def order_create_next(request):
 
 把情境頁面實作上來後，有沒有愈有模有樣了呢？比起先前只用數據驗證的階段，可用UI操作串接起來有趣多了。不過，信用卡刷卡還有一個`ReturnURL`的導回頁面，這個明天再繼續完成。
 
-![/images/emoticon/emoticon13.gif](/images/emoticon/emoticon13.gif)
+![/images/emoticon/emoticon13.gif](https://ithelp.ithome.com.tw/images/emoticon/emoticon13.gif)
