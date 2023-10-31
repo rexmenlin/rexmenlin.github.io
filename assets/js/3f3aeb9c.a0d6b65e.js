@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkcodetenshu=self.webpackChunkcodetenshu||[]).push([[353],{7588:s=>{s.exports=JSON.parse('{"label":"SSG","permalink":"/blog/tags/ssg","allTagsPath":"/blog/tags","count":2}')}}]);
