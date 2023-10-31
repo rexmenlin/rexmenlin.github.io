@@ -127,7 +127,7 @@ urlpatterns = [
 ![https://ithelp.ithome.com.tw/upload/images/20210927/20130354ssT7ZSwOoV.png](https://ithelp.ithome.com.tw/upload/images/20210927/20130354ssT7ZSwOoV.png)
 
 這下是否感到心裡踏實了呢！
-![/images/emoticon/emoticon34.gif](/images/emoticon/emoticon34.gif)
+![/images/emoticon/emoticon34.gif](https://ithelp.ithome.com.tw/images/emoticon/emoticon34.gif)
 
 #### 加一個URL參數取值
 
