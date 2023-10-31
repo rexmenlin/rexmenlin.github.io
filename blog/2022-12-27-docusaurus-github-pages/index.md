@@ -1,9 +1,12 @@
 ---
+
 slug: 2022-12-27-docusaurus-github-pages
 title:  "用Docusaurus搭配GitHub Pages建置免費個人部落格"
 authors:  [rexmenlin]
 tags: [SSG]
+
 ---
+
 # 用Docusaurus搭配GitHub Pages建置免費個人部落格
 
 先前介紹過一套靜態網站產生器 (Static Site Generator, SSG) — Jekyll，可完美搭配GitHub Pages使用，快速產生個人Blog建置。而今天要介紹另一套高效有趣的靜態網站產生器 — Docusaurus，有著相當可愛的恐龍Logo，他是由Facebook發起的開源專案 (正確說是Meta)。Jekyll使用的是Ruby作為建構基礎，而Docusaurus則是以node.js作為建置核心，若對node.js較為熟悉的朋友則可以快速的上手與使用。
@@ -30,9 +33,9 @@ Docusaurus可讓網站架設者將心思專注在撰寫文章上，因此只需�
 
 - Pages頁面
 - Docs 文件區
-    - 如果你的文章是有個大主題，且由多篇具順序性的文章組成，適合使用Docs來展現。
+  - 如果你的文章是有個大主題，且由多篇具順序性的文章組成，適合使用Docs來展現。
 - Blog 部落格區
-    - 如果你的文章以網誌方式呈現，強調發佈時間，且單篇獨立性，這樣就很適合使用Blog來展現。當然，但相同主題仍可使用tag群組分類。
+  - 如果你的文章以網誌方式呈現，強調發佈時間，且單篇獨立性，這樣就很適合使用Blog來展現。當然，但相同主題仍可使用tag群組分類。
 
 ## 小試身手，真的很簡單
 
@@ -43,7 +46,7 @@ Docusaurus可讓網站架設者將心思專注在撰寫文章上，因此只需�
 ```bash
 npx create-docusaurus@latest my-site
 # 或者
-npx create-docusaurus@latest my-site class
+npx create-docusaurus@latest my-site classic
 ```
 
 ![Untitled](./Untitled.png)
@@ -122,13 +125,13 @@ my-website
 ```
 
 - blog目錄
-    - 底下擺放的是blog文章，使用`YYYY-MM-DD-my-blog-post-title.md`方式命名。
+  - 底下擺放的是blog文章，使用`YYYY-MM-DD-my-blog-post-title.md`方式命名。
 - docs目錄
-    - 擺放文件內容，預設會在左邊自動依文章產生側邊欄的超連結。但若對左列的文件結構或順序等有自己特別的擺放方式，則可在sidebar.js檔調整。
+  - 擺放文件內容，預設會在左邊自動依文章產生側邊欄的超連結。但若對左列的文件結構或順序等有自己特別的擺放方式，則可在sidebar.js檔調整。
 - src目錄
-    - 所有非文件式的檔案可放在這個目錄，例如單頁式page或者React的元件。而在其pages子目錄底下放的Markdown、MDX、TSX檔都會被轉為頁面。
+  - 所有非文件式的檔案可放在這個目錄，例如單頁式page或者React的元件。而在其pages子目錄底下放的Markdown、MDX、TSX檔都會被轉為頁面。
 - static目錄
-    - 底下放置的是靜態的資源檔，這個目錄的檔案在進行Docusaurs建置過程時，會被複製到build目錄下。
+  - 底下放置的是靜態的資源檔，這個目錄的檔案在進行Docusaurs建置過程時，會被複製到build目錄下。
 
 ## 寫寫新文章
 
