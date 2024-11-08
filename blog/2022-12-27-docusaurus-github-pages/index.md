@@ -75,7 +75,7 @@ npm start
 
 ### 連到產生好的靜態網站試試
 
-直接到預設的http://localhost:3000/看結果
+直接到預設的 `http://localhost:3000/` 看結果
 
 ![Untitled](./Untitled%203.png)
 
