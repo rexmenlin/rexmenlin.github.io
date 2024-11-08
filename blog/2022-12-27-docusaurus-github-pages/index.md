@@ -1,5 +1,4 @@
 ---
-
 slug: 2022-12-27-docusaurus-github-pages
 title:  "用Docusaurus搭配GitHub Pages建置免費個人部落格"
 authors:  [rexmenlin]
@@ -67,6 +66,10 @@ npm start
 ```
 
 ![Untitled](./Untitled%202.png)
+
+> 如果你在一台新電腦上，把自己寫好的Docusaurus repo再clone下來時，要繼續執行上述的npm start，會出現`docusaurus: command not found`錯誤訊息，不用慌張，只需要執行`npm install`把package套件再下載安裝後就ok了。
+
+
 
 ### 連到產生好的靜態網站試試
 
