@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_site=self.webpackChunkmy_site||[]).push([[8947],{6600:e=>{e.exports=JSON.parse('{"authors":[{"name":"\u96f7\u54e5","title":"\u7a0b\u5f0f\u6280\u8853\u5929\u5b88\u95a3\u7ad9\u9577","url":"http://rexmenlin.github.io","imageURL":"https://member.ithome.com.tw/avatars/3540?s=ithelp","key":"rexmenlin","page":null,"count":6}]}')}}]);
