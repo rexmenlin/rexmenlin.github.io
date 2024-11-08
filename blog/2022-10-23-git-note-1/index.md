@@ -27,6 +27,8 @@ git init
 
 當完成後，此目錄(含以下)就具備Git的環境了，接下來，這個目錄會多出一些隱藏目錄.git，則表示該目錄已擁有Git的版控能力了。
 
+> 補充：若要直接用最簡單粗暴的方式讓該目錄解除被Git所控管，只要將init後產生出來的.git隱藏目錄徹底刪除即可。若不想刪除.git，只需要讓目錄解除Git的控管範圍，可使用 `git rm -r --cached .` 的作法。
+
 這時候就可以使用查詢Git狀態的指令確認：
 
 ```
@@ -76,7 +78,13 @@ git status
 
 ### Git文件狀態簡單說
 
-簡單說一下，在Git控管的目錄，一開始所有檔案都是在untracked (未追蹤)的狀態，而這個區域意即工作目錄(working directory)。而當開始有檔案的異動時，Git會偵測的到並會進入modified狀態。當「有被異動，且想要進行版控的文件」，才需要「追蹤」與管理它們。因此接下來就是要將這些檔案，移至下一個追蹤的狀態，我們稱之為「staged」。而在stage中的狀態 (即放置於Staging Area)，還不會直接受到Git的版控，需要將他們明確的「提交」(commit)後，才會成為一個正式的版控紀錄點，意即放入Git Repository區。
+簡單說一下，在Git控管的目錄，一開始所有檔案都是在untracked (未追蹤)的狀態，而這個區域意即工作目錄(working directory)。而當開始有檔案的異動時，Git會偵測的到並會進入modified狀態。當「有被異動，且想要進行版控的文件」，才需要「追蹤」與管理它們。
+
+
+
+因此接下來就是要將這些檔案，移至下一個追蹤的狀態，我們稱之為「staged」。而在stage中的狀態 (即放置於Staging Area)，還不會直接受到Git的版控，只是記錄被提交之前的變更 (暫時存儲的緩衝區)，需要將他們明確的「提交」(commit)後，才會成為一個正式的版控紀錄點，意即放入Git Repository區，並且會記下所有提交的歷史記錄。
+
+
 
 [Working Directory] **Untracked狀態** --> [Staging Area] **Staged狀態** --> [Git Repository] **Tracked狀態**
 
@@ -128,7 +136,7 @@ git commit -m <提交內容>
 
 > -m後，可加上雙引號、單引號、直接輸入字串(但不能空格，要空格必須使用引號)，甚至直接緊接著-m的m撰寫都可以。不過某些環境下使用單引號會有問題，例如windows cmd命令列，因此建議使用**雙引號**。
 
-### 補充技巧: 修改最後一次commit說明內容
+### 補充技巧: 只想修改最後一次commit說明內容
 
 只要在commit中，加上參數—amend指令，即可修改最後一次commit指令。
 
@@ -152,7 +160,7 @@ git commit --amend -m <新的內容>
 * 全新的一個專案，而且一開始就想要有直接放一份在遠端Repo (其實操作方式和上面很接近)
 * 我加入一個別人已在運作的專案，要把遠端的程式碼抓回來本地端 (使用git clone)
 
-### 如何與遠端的repo作連接 (以GitHub為例)
+### 如何與遠端的Repo作連接 (以GitHub為例)
 
 在GitHub開一個新的repo後，會有一段說明告訴你如何在本機端下指令，和GitHub的遠端Repo作連接。
 
@@ -331,7 +339,11 @@ git branch -d newfunc2
 
 當我們開了一個新的branch，以上述newfunc1為例，我們可以新增一些檔案的異動。並且進行add/commit後，接下來若我們要暫時回到原本的主線(或develop支線，為簡化說明，以下均以master為例)，只要checkout回master即可。checkout回去後，可看到原本在newfunc1修改的內容，會被倒回到原本沒有修改的狀態。
 
-可以使用以下指令，查詢commit的狀態。
+
+
+下面就簡單示範一下這個情境的操作。
+
+首先，可以使用以下指令，查詢commit的狀態。
 
 ```jsx
 git log --oneline
@@ -341,13 +353,21 @@ git log --oneline
 
 其中可以看到，目前有兩個branch： master與newfunc1。但我們因為已checkout到newfunc1，所以目前有三次的提交，HEAD會指在最新的地方。
 
+
+
+若原先有一個檔案test.txt，原本只有三行，我們加上第四行。
+
+```
+Test4 for newfunc1
+```
+
 ![Untitled](./Untitled%207.png)
 
-若原先有一個檔案test.txt，原本只有三行，我們加上第四行。並進行add與commit。
+並進行add與commit。
 
 ![Untitled](./Untitled%208.png)
 
-上述的log指的是，目前有四次提交，而HEAD指在這裡，並且branch名為newfunc1。可看到master是停留在第三次提交上。
+上述的log指出，我們有2個branch，現在HEAD指向的是`newfunc1`，並且是四次提交；而可看到master是停留在第三次提交上，且master並非最新的HEAD指向。
 
 ### 倒回主線的狀態
 
@@ -362,7 +382,7 @@ type test.txt
 
 在checkout回master後查看log，會看到在這條線上是看不到newfunc1 branch的。
 
-### 直接移動branch的commit點
+### 補充：直接移動branch的commit點
 
 若我們想直接將任一個branch的commit點直接跳到另一個commit點，可使用branch -f的指令達成：
 
@@ -375,9 +395,13 @@ git branch -f master 06fe
 
 我們當初開設newfunc1的目的，就是為了在其他分支中撰寫一些新的東西而暫不影響主線內容。當我們已經確認完新內容時，就可以使用merge的功能把新內容整合回主線中。
 
-要記得，merge的用法，是以「較早期內容者的branch，去merge新內容branch」
+要記得，merge的用法，其操作流程的概念是：「較早期內容者的branch，以新內容branch的資料merge回來」
 
-因此，我們想要把新的newfunc1的內容，整合回master，是要checkout到master去下merge指令的。
+因此，我們想要把新的newfunc1的內容，整合回master，作法的邏輯是：
+
+1. checkout到master branch
+
+2. 在master branch下merge newfunc1指令
 
 ```jsx
 git merge newfunc1
