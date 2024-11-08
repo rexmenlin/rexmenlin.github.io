@@ -34,7 +34,7 @@ Heroku不支援原本Django預設的SQLite，因此我們要使用Heroku自帶�
 ![https://ithelp.ithome.com.tw/upload/images/20210929/20130354EeikXcH1tp.png](https://ithelp.ithome.com.tw/upload/images/20210929/20130354EeikXcH1tp.png)
 
 其中config的字串以下列方式進行解析：
-> postgres://{user}:{password}@{hostname}:{port}/{database-name}
+> `postgres://{user}:{password}@{hostname}:{port}/{database-name}`
 > 
 所以可以找出`user`、`password`、`hostname`、`port`、`database-name`這五個資訊備用。
 

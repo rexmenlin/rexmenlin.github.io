@@ -14,7 +14,7 @@ tags: [Docker]
 
 首先，你只要到Docker的[官網](https://www.docker.com/)裡  ，第一頁就是會引導你安裝Docker Desktop這套軟體，請依照自己慣用的作業系統進行安裝，因為雷哥我只有Windows電腦，因此這篇就只會撰寫Windows的安裝流程與手順。
 
-
+<!-- truncate -->
 
 ## 開始安裝Windows版Docker Desktop
 

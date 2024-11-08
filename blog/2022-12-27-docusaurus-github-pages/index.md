@@ -18,6 +18,8 @@ tags: [SSG]
 
 這裡所說到的，就是**MDX**，簡言之就是讓Markdown語法支援JSX，可以在Markdown裡引入元件，並有機會達成React的元件共用的優勢。有關MDX，可參考其[官網](https://mdxjs.com/)。這裡就不詳細說明，總之，Docusaurus除了單純撰寫Markdown的文件外，讓如果原本對React技術熟悉的人，可以有機會讓文件多出一些互動功能(例如互動圖表)的可能性。
 
+<!-- truncate -->
+
 ### 進階功能
 
 提供了版控、快速更換主題(theme)以及多國語系的設定配置與切換的能力。且支援了TypeScript，但如果純粹寫文章的話是可以不理會及使用。
@@ -261,7 +263,7 @@ module.exports = {
 };
 ```
 
-以上的配置，是使用GitHub Pages的預設專案來設定，也就是repo的名稱是「{username}.github.io」。
+以上的配置，是使用GitHub Pages的預設專案來設定，也就是repo的名稱是「`{username}.github.io`」。
 
 ### 透過專用的指令建置
 

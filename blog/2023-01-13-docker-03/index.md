@@ -31,7 +31,7 @@ docker version
 docker-compose -v
 docker-compose version
 ```
-
+<!-- truncate -->
 ## Image映像檔
 
 接著就可以從Image開始了解起。

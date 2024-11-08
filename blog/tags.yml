@@ -1,0 +1,14 @@
+SSG:
+  label: SSG
+  permalink: /ssg
+  description: SSG tag description
+
+Git:
+  label: Git
+  permalink: /git
+  description: Git tag description
+
+Docker:
+  label: Docker
+  permalink: /docker
+  description: Docker tag description

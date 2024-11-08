@@ -37,7 +37,7 @@ Sign的製作材料會需要三個：
 #### 「訊息內文」需要加工一下
 這個訊息內文不是直接把我們打算要傳的JSON格式直接傳出去，而是要符合以下規格：
 > * 先移除所有空值的參數，參數值前後不可有空白。
-> * 將剩餘所有參數值依照「參數名稱」由小至大排序 (不分大小寫即 A<B and a <B ) )，組成如param1=value1&param2=value2 的字串。
+> * 將剩餘所有參數值依照「參數名稱」由小至大排序 (不分大小寫即 A < B and a < B )，組成如param1=value1&param2=value2 的字串。
 > * 如為多節點參數則不參與 sign 值演算 。
 
 ![https://ithelp.ithome.com.tw/upload/images/20210919/20130354dF1ZoqgKBU.png](https://ithelp.ithome.com.tw/upload/images/20210919/20130354dF1ZoqgKBU.png)
