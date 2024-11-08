@@ -271,6 +271,22 @@ module.exports = {
 cmd /C "set "GIT_USER=<GITHUB_USERNAME>" && yarn deploy"
 ```
 
+Mac的話，可使用以下指令
+
+```
+GIT_USER=<GITHUB_USERNAME> yarn deploy
+```
+
+若出現了以下錯誤，則將GIT_USER加入ENV環境變數中
+
+```
+[ERROR] Error: Please set the GIT_USER environment variable, or explicitly specify USE_SSH instead!
+```
+
+```
+export GIT_USER=<GITHUB_USERNAME>
+```
+
 透過上述指令，會進行建置，預設會將原本Docusaurus的原始檔，發佈到`main` branch底下，而產生的靜態頁面的原始檔，則會發佈到`gh-pages` branch底下。
 
 ![Untitled](./Untitled%204.png)
@@ -284,3 +300,17 @@ cmd /C "set "GIT_USER=<GITHUB_USERNAME>" && yarn deploy"
 調整後，記得按下`save`，需等一點點時間才會起作用。
 
 如果你可以看到自己的blog出現在自己的GitHub Pages，就大功告成囉！
+
+
+
+## 補充：之後新的文章或修改舊文章
+
+若之後撰寫新的文章，或修改舊文章，可以直接調整.md檔的內容後，再執行上述的yarn deploy指令，則會自動發佈已產生的內容，直接蓋掉gh-pages的內容 (大概需要10秒鐘)。這個動作和你的原始檔修改後是否要進行git commit & push是無關的。
+
+
+
+簡單說，你現在有兩個branch，一個是master，主要掌管的是你自己文章的Git版控。另一個是gh-pages，掌管的是你所build完後產生的SSG靜態內容。
+
+
+
+因此當你寫新文章或修改文章後，你必須要把這兩個動作都完成，才會確保你Github pages上的blog文章呈現也是最新的，你的文件原始碼也一併更新至最新狀態。
